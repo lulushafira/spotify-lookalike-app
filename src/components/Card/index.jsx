@@ -1,14 +1,13 @@
 import React from 'react';
 import './index.css';
-import data  from '../../data/sample.js';
 
-function Card() {
+function Card({album__image, album__name, title, artists}) {
   return (
     <div class="card-wrap">
       <div class="content">
-        <img class="img-album" src={data.album.images[1].url} alt={data.album.name}/>
-        <h3>{data.name}</h3>
-        <p>{data.artists[0].name}</p>    
+        <img class="img-album" src={album__image} alt={album__name}/>
+        <h3>{title}</h3>
+        <p>{artists}</p>    
         <input class="btn "type="button" value="Select" />
       </div>
     </div>
