@@ -1,20 +1,40 @@
-.card-wrap{
-    height: 100vh;
-    text-align: center;
+*{
+    margin: 0;
+}
+
+h3{
+    font-size: 1rem;
+    margin: 5px;
+    height: 40px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+}
+
+p{
+    font-size: 0.9rem;
+
+}
+
+.card-wrap{
+    text-align: center;
+    padding: 30px;
 }
 
 .content{
-    width: 20%;
+    width: 200px;
+    height: 250px;
     background-color: rgba(212, 153, 255, 0.7);
-    padding: 40px;
+    padding: 40px 20px;
     border-radius: 40px;
 }
 
 .img-album{
-    width: 80%;
+    width: 75%;
+}
+
+.info{
+    height: 70px;
 }
 
 .btn{
@@ -26,7 +46,6 @@
     border: none;
     border-radius: 10px;
     position: relative;
-
 }
 
 
