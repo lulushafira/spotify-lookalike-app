@@ -37,7 +37,7 @@ p{
     height: 70px;
 }
 
-.btn-card{
+.btn-select{
     padding: 10px;
     width: 80px;
     background-color: rgba(255, 255, 255,0.5);
@@ -49,12 +49,12 @@ p{
 }
 
 
-.btn-card:hover{
+.btn-select:hover{
     background-color: rgba(255, 255, 255,1);
     cursor: pointer;
 }
 
-.btn-card:active{
+.btn-select:active{
     background-color: rgba(255, 255, 255,1);
     top:2px;
 }

@@ -1,25 +1,20 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect} from 'react'
 import config from '../../lib/config';
-import Button from '../Button'
 import './index.css'
 
-export default class Searchbar extends Component {
-  state = {
-    text: '',
+const Searchbar = ({accessToken, onSuccess}) =>{
+  const [text, setText] = useState('');
+
+  const handleInput = (e) => {
+    setText(e.target.value);
   }
 
-  handleInput(e) {
-    this.setState({ text: e.target.value });
-  }
-
-  async onSubmit(e) {
+  const onSubmit = async (e) => {
     e.preventDefault();
-
-    const { text } = this.state;
 
     var requestOptions = {
       headers: {
-        'Authorization': 'Bearer ' + this.props.accessToken,
+        'Authorization': 'Bearer ' + accessToken,
         'Content-Type': 'application/json',
       },
     };
@@ -29,27 +24,24 @@ export default class Searchbar extends Component {
         .then((data) => data.json());
 
       const tracks = response.tracks.items;
-      this.props.onSuccess(tracks);
+      onSuccess(tracks);
     } catch (e) {
       alert(e);
     }
+}
 
-    e.target.blur();
-  }
-
-  render() {
     return (
-      <form className="form-search" onSubmit={(e) => this.onSubmit(e)}>
+      <form className="form-search" onSubmit={onSubmit}>
         <input
           type="text"
           placeholder="Search..."
           className="form-search-input"
           required
-          onChange={(e) => this.handleInput(e)}
+          onChange={handleInput}
         />
-        <Button type="submit">Search</Button>
+        <button type="submit" className='btn-search'>Search</button>
       </form>
     )
-  }
 }
 
+export default Searchbar;

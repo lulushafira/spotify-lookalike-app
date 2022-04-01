@@ -1,4 +1,17 @@
-.btn{
+.center{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.center p{
+    font-size: medium;
+    margin: 5px;
+}
+
+.authorize{
     background-color: rgba(212, 153, 255, 0.5);
     padding: 10px;
     width: 80px;
@@ -7,15 +20,16 @@
     border: none;
     border-radius: 10px;
     position: relative;
-    margin-left: 10px;
+    text-decoration: none;
+    display: inline-block;
 }
 
-.btn:hover{
+.authorize:hover{
     background-color: rgba(212, 153, 255, 1);
     cursor: pointer;
 }
 
-.btn:active{
+.authorize:active{
     background-color: rgba(212, 153, 255, 1);
     top:2px;
 }
