@@ -1,6 +1,6 @@
-import React, { useState, useEffect} from 'react'
-import config from '../../lib/config';
+import React, { useState} from 'react'
 import './index.css'
+import { searchTrack } from '../../lib/fetchAPI';
 
 const Searchbar = ({accessToken, onSuccess}) =>{
   const [text, setText] = useState('');
@@ -12,16 +12,9 @@ const Searchbar = ({accessToken, onSuccess}) =>{
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    var requestOptions = {
-      headers: {
-        'Authorization': 'Bearer ' + accessToken,
-        'Content-Type': 'application/json',
-      },
-    };
-
     try {
-      const response = await fetch(`${config.SPOTIFY_BASE_URL}/search?type=track&q=${text}`, requestOptions)
-        .then((data) => data.json());
+      const response = await searchTrack(text, accessToken);
+
 
       const tracks = response.tracks.items;
       onSuccess(tracks);
