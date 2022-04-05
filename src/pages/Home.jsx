@@ -6,15 +6,16 @@ import config from "../lib/config";
 import { getUserProfile } from '../lib/fetchAPI';
 import { toast } from 'react-toastify';
 import "./home.css";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../authSlice";
 
 const Home = () => {
-  const [accessToken, setAccessToken] = useState('');
-  const [isAuthorized, setIsAuthorized] = useState(false);
+  const isAuthorized = useSelector((state)=> state.auth.isLogin);
+  const dispatch = useDispatch();
   const [tracks, setTracks] = useState([]);
   const [selectedTracksUri, setSelectedTracksUri] = useState([]);
   const [selectedTracks, setSelectedTracks] = useState([]);
   const [isInSearch, setIsInSearch] = useState(false);
-  const [user, setUser] = useState({});
 
 
 
@@ -22,14 +23,15 @@ const Home = () => {
     const accessTokenParams = new URLSearchParams(window.location.hash).get('#access_token');
 
     if (accessTokenParams !== null) {
-      setAccessToken(accessTokenParams);
-      setIsAuthorized(accessTokenParams !== null);
-
       const setUserProfile = async () => {
         try {
           const response = await getUserProfile(accessTokenParams);
           //called getUserProfile function from fetchAPI
-          setUser(response);
+
+          dispatch(login({
+            accessToken:accessTokenParams,
+            user:response,
+          }));
         } catch (e) {
           toast.error(e);
         }
@@ -95,14 +97,11 @@ const Home = () => {
         <main className="container">
           <div className="form">
             <Form 
-              accessToken={accessToken}
-              userId={user.id}
               uriTracks={selectedTracksUri}
             />
           </div>
           <div className="search__playlist">
             <Searchbar
-              accessToken={accessToken}
               onSuccess={onSuccessSearch}
               onClearSearch={clearSearch}
             />

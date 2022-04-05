@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { addTracksToPlaylist, createPlaylist } from '../../lib/fetchAPI';
 import './index.css';
 
+
 const sendFormNetworkCall = (data) => console.log(data);
 
-const Form = ({ accessToken, userId, uriTracks }) =>{
+const Form = ({uriTracks }) =>{
+    const accessToken = useSelector((state)=> state.auth.accessToken);
+    const userId = useSelector((state)=> state.auth.user.id);
     const [form, setForm] = useState({
         title:'',
         description:''
