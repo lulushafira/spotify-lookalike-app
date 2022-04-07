@@ -2,58 +2,26 @@ import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
 import Searchbar from "../components/Searchbar";
 import Form from "../components/Form";
-import config from "../lib/config";
-import { getUserProfile } from '../lib/fetchAPI';
-import { toast } from 'react-toastify';
-import "./home.css";
-import { useDispatch, useSelector } from "react-redux";
-import { login } from "../authSlice";
+import { useSelector } from "react-redux";
+import "../pages/home.css";
 
 const Home = () => {
   const isAuthorized = useSelector((state)=> state.auth.isLogin);
-  const dispatch = useDispatch();
   const [tracks, setTracks] = useState([]);
   const [selectedTracksUri, setSelectedTracksUri] = useState([]);
   const [selectedTracks, setSelectedTracks] = useState([]);
   const [isInSearch, setIsInSearch] = useState(false);
+ 
+  const tokenSpotify = useSelector((state) => state.auth.accessToken);
+	console.log(tokenSpotify);
 
-
-
-  useEffect(() => {
-    const accessTokenParams = new URLSearchParams(window.location.hash).get('#access_token');
-
-    if (accessTokenParams !== null) {
-      const setUserProfile = async () => {
-        try {
-          const response = await getUserProfile(accessTokenParams);
-          //called getUserProfile function from fetchAPI
-
-          dispatch(login({
-            accessToken:accessTokenParams,
-            user:response,
-          }));
-        } catch (e) {
-          toast.error(e);
-        }
-      }
-
-      setUserProfile();
-    }
-  }, []); 
 
   useEffect(() => {
     if (!isInSearch) {
       setTracks(selectedTracks);
     }
   }, [selectedTracksUri, selectedTracks, isInSearch]);
-
-  const getSpotifyLinkAuthorize = () => {
-    const state = Date.now().toString();
-    const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
-
-    return `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=http://localhost:3000&state=${state}&scope=${config.SPOTIFY_SCOPE}`;
-  };
-
+    
     const onSuccessSearch = (searchTracks) => {
     setIsInSearch(true);
 
@@ -82,18 +50,6 @@ const Home = () => {
 
   return (
     <div className="home">
-      {!isAuthorized && (
-        <main className="center">
-          <div>
-            <p>Login to Spotify</p>
-            <a href={getSpotifyLinkAuthorize()} className="authorize">
-              Login
-            </a>
-          </div>
-        </main>
-      )}
-
-      {isAuthorized && (
         <main className="container">
           <div className="form">
             <Form 
@@ -124,7 +80,6 @@ const Home = () => {
             </div>
           </div>
         </main>
-      )}
     </div>
   );
 };
