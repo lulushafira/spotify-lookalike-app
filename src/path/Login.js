@@ -3,12 +3,11 @@ import config from "../lib/config";
 import { getUserProfile } from '../lib/fetchAPI';
 import { toast } from 'react-toastify';
 import "../pages/home.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from "../authSlice";
 // import { useHistory } from "react-router-dom";
 
 const Login = () => {
-  const isAuthorized = useSelector((state)=> state.auth.isLogin);
   const dispatch = useDispatch();
 //   const history = useHistory();
 
@@ -34,7 +33,7 @@ const Login = () => {
 
       setUserProfile();
     }
-  }, []); 
+  }, [dispatch]); 
 
   const getSpotifyLinkAuthorize = () => {
     const state = Date.now().toString();

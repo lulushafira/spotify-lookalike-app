@@ -2,9 +2,9 @@ import React, {useState}from "react";
 import "./index.css";
 import PropTypes from "prop-types";
 
-function Card({ album__image, album__name, title, artists,toggleSelect }) {
+function Card({ album__image, album__name, title, artists,toggleSelect, select }) {
  
-  const [isSelected, setIsSelected] = useState(false);
+  const [isSelected, setIsSelected] = useState(select);
 
   const handleToggleSelect = () => {
     setIsSelected(!isSelected);

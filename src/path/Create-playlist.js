@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import "../pages/home.css";
 
 const Home = () => {
-  const isAuthorized = useSelector((state)=> state.auth.isLogin);
   const [tracks, setTracks] = useState([]);
   const [selectedTracksUri, setSelectedTracksUri] = useState([]);
   const [selectedTracks, setSelectedTracks] = useState([]);
@@ -74,6 +73,7 @@ const Home = () => {
                     title={e.name}
                     artists={e.artists[0].name}
                     toggleSelect={() => toggleSelect(e)}
+                    select={selectedTracksUri.includes(e.uri)}
                   />
                 ))}
               </div>

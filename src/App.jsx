@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter, Switch, Route, Link, Redirect} from "react-router-dom"
+import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom"
 import { useSelector } from "react-redux";
 import "./App.css";
 // import Home from './pages/Home';
