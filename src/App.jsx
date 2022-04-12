@@ -1,10 +1,9 @@
 import React from "react";
 import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom"
 import { useSelector } from "react-redux";
-import "./App.css";
-// import Home from './pages/Home';
-import Login from './path/Login';
-import MainPage from './path/Create-playlist';
+import styles from "./App.module.css";
+import Login from './path/Login/Login.js';
+import MainPage from './path/Create-Playlist/Create-playlist.js';
 
 
 
@@ -12,13 +11,6 @@ function App() {
   const accessToken = useSelector((state)=> state.auth.accessToken);
    return (
      <BrowserRouter>
-        {/* <div>
-          <ul>
-            <li>
-              <Link to="/create-playlist">Playlist</Link>
-            </li>
-          </ul>
-        </div> */}
         <Switch>
           <Route path="/create-playlist">
             {accessToken !== "" ? <MainPage/> : <Redirect to="/"/>}

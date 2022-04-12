@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { addTracksToPlaylist, createPlaylist } from '../../lib/fetchAPI';
-import './index.css';
+import styles from "./index.module.css";
 
 
 const sendFormNetworkCall = (data) => console.log(data);
@@ -44,16 +44,16 @@ const Form = ({uriTracks }) =>{
 
 
     return(
-        <form className="form" onSubmit={handleForm}>
-            <div className="form__content">
-                <div className="form__header">
-                    <h4 className="form__title">Create Playlist</h4>
+        <form className={styles.form} onSubmit={handleForm}>
+            <div className={styles.form__content}>
+                <div className={styles.form__header}>
+                    <h4 className={styles.form__title}>Create Playlist</h4>
                 </div>
-                <div className="form__body">
+                <div className={styles.form__body}>
                     <div className="title">
                         <p htmlFor="title">Title</p>
                         <input
-                            className='input'
+                            className={styles.input}
                             minLength={10}
                             type="text" 
                             name='title' 
@@ -62,10 +62,10 @@ const Form = ({uriTracks }) =>{
                             required 
                         />
                     </div>
-                    <div className="desc">
+                    <div className={styles.desc}>
                         <p htmlFor="description">Description</p>
                         <input
-                            className='input'
+                            className={styles.input}
                             type="text" 
                             name='description' 
                             value={form.description} 
@@ -73,8 +73,8 @@ const Form = ({uriTracks }) =>{
                         />
                     </div>
                 </div>
-                <div className="form__footer">
-                    <button className="submit">Create</button>
+                <div className={styles.form__footer}>
+                    <button className={styles.submit}>Create</button>
                 </div>
             </div>
         </form>

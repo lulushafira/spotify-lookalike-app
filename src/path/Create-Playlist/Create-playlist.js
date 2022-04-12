@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Card from "../components/Card";
-import Searchbar from "../components/Searchbar";
-import Form from "../components/Form";
+import Card from "../../components/Card";
+import Searchbar from "../../components/Searchbar";
+import Form from "../../components/Form";
 import { useSelector } from "react-redux";
-import "../pages/home.css";
+import styles from "./create-playlist.module.css"
 
 const Home = () => {
   const [tracks, setTracks] = useState([]);
@@ -48,14 +48,14 @@ const Home = () => {
   }
 
   return (
-    <div className="home">
-        <main className="container">
-          <div className="form">
+    <div className={styles.home}>
+        <main className={styles.container}>
+          <div className={styles.form}>
             <Form 
               uriTracks={selectedTracksUri}
             />
           </div>
-          <div className="search__playlist">
+          <div className={styles.search__playlist}>
             <Searchbar
               onSuccess={onSuccessSearch}
               onClearSearch={clearSearch}
@@ -64,7 +64,7 @@ const Home = () => {
             <div className="">
               {tracks.length === 0 && <p></p>}
 
-              <div className="cards">
+              <div className={styles.cards}>
                 {tracks.map((e) => (
                   <Card
                     key={e.id}

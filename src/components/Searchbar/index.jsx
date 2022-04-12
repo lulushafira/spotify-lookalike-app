@@ -1,5 +1,5 @@
 import React, { useState} from 'react'
-import './index.css'
+import styles from'./index.module.css'
 import { searchTrack } from '../../lib/fetchAPI';
 import { useSelector } from 'react-redux';
 
@@ -26,15 +26,15 @@ const Searchbar = ({onSuccess}) =>{
 }
 
     return (
-      <form className="form-search" onSubmit={onSubmit}>
+      <form className={styles.form__search} onSubmit={onSubmit}>
         <input
           type="text"
           placeholder="Search..."
-          className="form-search-input"
+          className={styles.form__search__input}
           required
           onChange={handleInput}
         />
-        <button type="submit" className='btn-search'>Search</button>
+        <button type="submit" className={styles.btn__search}>Search</button>
       </form>
     )
 }

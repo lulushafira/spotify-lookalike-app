@@ -1,15 +1,15 @@
 import React, { useEffect} from "react";
-import config from "../lib/config";
-import { getUserProfile } from '../lib/fetchAPI';
+import config from "../../lib/config";
+import { getUserProfile } from '../../lib/fetchAPI';
 import { toast } from 'react-toastify';
-import "../pages/home.css";
+import styles from "./login.module.css";
 import { useDispatch } from "react-redux";
-import { login } from "../authSlice";
-// import { useHistory } from "react-router-dom";
+import { login } from "../../authSlice";
+
 
 const Login = () => {
   const dispatch = useDispatch();
-//   const history = useHistory();
+
 
   useEffect(() => {
     const accessTokenParams = new URLSearchParams(window.location.hash).get('#access_token');
@@ -44,11 +44,11 @@ const Login = () => {
 
 
   return (
-    <div className="home">
-        <main className="center">
+    <div className={styles.home}>
+        <main className={styles.center}>
           <div>
             <p>Login to Spotify</p>
-            <a href={getSpotifyLinkAuthorize()} className="authorize">
+            <a href={getSpotifyLinkAuthorize()} className={styles.authorize}>
               Login
             </a>
           </div>
