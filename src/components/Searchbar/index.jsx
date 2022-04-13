@@ -2,6 +2,7 @@ import React, { useState} from 'react'
 import styles from'./index.module.css'
 import { searchTrack } from '../../lib/fetchAPI';
 import { useSelector } from 'react-redux';
+import Textfield from '@mui/material/TextField';
 
 const Searchbar = ({onSuccess}) =>{
   const accessToken = useSelector((state)=> state.auth.accessToken);
@@ -27,13 +28,21 @@ const Searchbar = ({onSuccess}) =>{
 
     return (
       <form className={styles.form__search} onSubmit={onSubmit}>
-        <input
+        <Textfield label="Search"
+          id="outlined-size-small"
+          size="small"
+          type="text"
+          className={styles.form__search__input}
+          required
+          onChange={handleInput}
+        />
+        {/* <input
           type="text"
           placeholder="Search..."
           className={styles.form__search__input}
           required
           onChange={handleInput}
-        />
+        /> */}
         <button type="submit" className={styles.btn__search}>Search</button>
       </form>
     )

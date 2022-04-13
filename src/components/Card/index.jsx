@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./index.module.css";
 import PropTypes from "prop-types";
 
+
 function Card({
   album__image,
   album__name,
@@ -32,6 +33,12 @@ function Card({
             <p className={styles.info__song}>{album__name}</p>
           </div>
           <div className={styles.info__btn}>
+          {/* <Button 
+          className={styles.btn__select} 
+          onClick={handleToggleSelect}
+          variant='outlined'>
+              {isSelected ? "Deselect" : "Select"}
+            </Button> */}
           <button className={styles.btn__select} onClick={handleToggleSelect}>
               {isSelected ? "Deselect" : "Select"}
             </button>

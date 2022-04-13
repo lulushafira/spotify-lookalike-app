@@ -1,9 +1,8 @@
 import React from "react";
 import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom"
 import { useSelector } from "react-redux";
-import styles from "./App.module.css";
-import Login from './path/Login/Login.js';
-import MainPage from './path/Create-Playlist/Create-playlist.js';
+import Login from './path/Login/Login.jsx';
+import MainPage from './path/Create-Playlist/Create-playlist.jsx';
 
 
 
@@ -20,9 +19,6 @@ function App() {
           </Route>
         </Switch>
      </BrowserRouter>
-      // <div className="app">
-      //   <Home/>
-      // </div>
     )
 
   
