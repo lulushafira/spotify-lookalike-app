@@ -1,18 +1,24 @@
-import React, { useState} from 'react'
+import React, { ChangeEventHandler, FormEventHandler, useState} from 'react'
 import styles from'./index.module.css'
 import { searchTrack } from '../../lib/fetchAPI';
 import { useSelector } from 'react-redux';
+import { TRootState } from '../../store'
 import Textfield from '@mui/material/TextField';
 
-const Searchbar = ({onSuccess}) =>{
-  const accessToken = useSelector((state)=> state.auth.accessToken);
-  const [text, setText] = useState('');
+interface AppProps{
+  onSuccess: (tracks: any[])=>void;
+}
 
-  const handleInput = (e) => {
+
+const Searchbar: React.FC<AppProps> = ({onSuccess} ) =>{
+  const accessToken:string = useSelector((state: TRootState)=> state.auth.accessToken);
+  const [text, setText] = useState<string>('');
+
+  const handleInput: ChangeEventHandler<HTMLInputElement> = (e)=> {
     setText(e.target.value);
   }
 
-  const onSubmit = async (e) => {
+  const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
     try {
@@ -36,13 +42,6 @@ const Searchbar = ({onSuccess}) =>{
           required
           onChange={handleInput}
         />
-        {/* <input
-          type="text"
-          placeholder="Search..."
-          className={styles.form__search__input}
-          required
-          onChange={handleInput}
-        /> */}
         <button type="submit" className={styles.btn__search}>Search</button>
       </form>
     )

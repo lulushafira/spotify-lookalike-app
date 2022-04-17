@@ -2,18 +2,34 @@ import React, { useState } from "react";
 import styles from "./index.module.css";
 import PropTypes from "prop-types";
 
+interface AppProps{
+  album__image: string;
+  album__name: string;
+  title: string;
+  artists: string;
+  select: boolean;
+  toggleSelect: () => void;
+}
 
-function Card({
+type handleToggle= () =>void;
+
+// const Track: React.FC<AppProps> = ({album__image, album__name, title, artists,
+//   toggleSelect,
+//   select,}) =>{
+
+//   }
+
+const Card: React.FC<AppProps> = ({
   album__image,
   album__name,
   title,
   artists,
-  toggleSelect,
   select,
-}) {
-  const [isSelected, setIsSelected] = useState(select);
+  toggleSelect,
+}) => {
+  const [isSelected, setIsSelected] = useState<boolean>(select);
 
-  const handleToggleSelect = () => {
+  const handleToggleSelect: handleToggle = () => {
     setIsSelected(!isSelected);
     toggleSelect();
   };
@@ -33,12 +49,6 @@ function Card({
             <p className={styles.info__song}>{album__name}</p>
           </div>
           <div className={styles.info__btn}>
-          {/* <Button 
-          className={styles.btn__select} 
-          onClick={handleToggleSelect}
-          variant='outlined'>
-              {isSelected ? "Deselect" : "Select"}
-            </Button> */}
           <button className={styles.btn__select} onClick={handleToggleSelect}>
               {isSelected ? "Deselect" : "Select"}
             </button>
