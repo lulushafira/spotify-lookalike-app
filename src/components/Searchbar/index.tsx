@@ -41,8 +41,13 @@ const Searchbar: React.FC<AppProps> = ({onSuccess} ) =>{
           className={styles.form__search__input}
           required
           onChange={handleInput}
+          data-testid="searchbar"
         />
-        <button type="submit" className={styles.btn__search}>Search</button>
+        <button 
+          type="submit" 
+          className={styles.btn__search}
+          data-testid="button_search"
+          >Search</button>
       </form>
     )
 }

@@ -64,7 +64,7 @@ const Home = () => {
             <div className="">
               {tracks.length === 0 && <p></p>}
 
-              <div className={styles.cards}>
+              <div className={styles.cards} data-testid = "tracks-list">
                 {tracks.map((e) => (
                   <Card
                     key={e.id}
