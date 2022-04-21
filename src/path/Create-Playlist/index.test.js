@@ -20,27 +20,29 @@ const server = setupServer(
     (req, res, ctx) => {
       return res(
         ctx.json({
-          items: [
-            {
-              id: "1",
-              album: {
-                images: [
+          tracks:{
+            items: [
+              {
+                id: "1",
+                album: {
+                  images: [
+                    {
+                      url: "test image url",
+                    },
+                  ],
+                },
+                name: "test title",
+                artists: [
                   {
-                    url: "test image url",
+                    name: "test artist",
                   },
                 ],
+                uri: "test uri",
               },
-              title: "test title",
-              artists: [
-                {
-                  name: "test artist",
-                },
-              ],
-              uri: "test uri",
-            },
-          ],
+            ],
+          }
         })
-      );
+      )
     }
   )
 );
